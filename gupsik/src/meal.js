@@ -1,10 +1,10 @@
 /**
  * meal.js
- * 
+ *
  * @description 교육청에서 급식 정보 파싱 후 json 데이터를 반환합니다.
  * @author Leegeunhyeok
  * @version 2.1.0
- * 
+ *
  */
 
 const request = require('request')
@@ -26,12 +26,13 @@ class Meal {
           resolve(body)
         })
       })
-      
+
       let $ = cheerio.load(body, {decodeEntities: false})
 
       // 급식 데이터 갯수 카운트, 반복하며 1씩 증가 (오늘 급식 데이터를 )
       let count = 1
       let today = ''
+      let tomorrow = ''
       let customDate = false
 
       // URL에 지정한 년도, 월이 있는지 추출
@@ -83,7 +84,7 @@ class Meal {
         month,
         day
       }
-      
+
       $('tbody > tr > td').each(function () {
         if ($(this).text().match(/^[0-9]{1,2}/)) {
           let html = $(this).html().replace(/^<div>/, '').replace(/<\/div>$/, '')
@@ -99,6 +100,9 @@ class Meal {
           result[date] = menu
 
           // 오늘 날짜의 급식 메뉴를 today에 임시 저장
+          if (count === day+1) {
+            tomorrow = menu
+          }
           if (count === day) {
             today = menu
           }
@@ -106,6 +110,7 @@ class Meal {
         }
       })
       result['today'] = today // 오늘의 급식
+      result['tomorrow'] = tomorrow
       return result
     } catch(e) {
       /* 에러 핸들링 */
@@ -116,3 +121,4 @@ class Meal {
 }
 
 module.exports = Meal
+//result['today'] = today
