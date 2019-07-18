@@ -13,6 +13,7 @@ const Gupsik = async function(){
     meal1: `${meal.today}`,
     meal2: `${meal.tomorrow}`,
   };
+  var accountStr = JSON.stringify(accountObj);
   module.exports = app =>{
     app.post('/', function(req, res){
       res.json({
@@ -29,5 +30,6 @@ const Gupsik = async function(){
       })
     })
   }
+  console.log(accountStr);
 }
 Gupsik();
