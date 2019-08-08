@@ -12,8 +12,11 @@
     "cheerio": "^1.0.0-rc.2",
     "cryptiles": "^4.1.3",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
+=======
+>>>>>>> 6e7ffe78d05d40e7845f0554365c61a9e9b24ca2
     "request": "^2.88.0"
   },
   "scripts": {
