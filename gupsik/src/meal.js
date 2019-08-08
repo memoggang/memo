@@ -11,7 +11,7 @@ const request = require('request')
 const cheerio = require('cheerio')
 
 class Meal {
-  /**
+  /** 
    * @description 이번 달 급식 데이터를 파싱합니다.
    * @param {string} url 파싱할 타겟 URL
    * @return {any} 이번 달 급식 데이터
@@ -93,7 +93,7 @@ class Meal {
 
           // 급식이 없을 경우 빈 문자열로 설정
           if (menu.match(/^[0-9]{1,2}/)) {
-            menu = ''
+            menu = '급식이 없습니다 :)'
           }
 
           // 해당 날짜에 급식 데이터 추가
